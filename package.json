@@ -1,0 +1,24 @@
+{
+  "name": "webpack-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/obayomi96/webpack-boilerplate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/obayomi96/webpack-boilerplate/issues"
+  },
+  "homepage": "https://github.com/obayomi96/webpack-boilerplate#readme",
+  "devDependencies": {
+    "webpack": "^4.41.6",
+    "webpack-cli": "^4.0.0-beta.2"
+  }
+}
