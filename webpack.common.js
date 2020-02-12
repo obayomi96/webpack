@@ -1,7 +1,12 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    main: './src/index.js',
+    vandor: './src/vendor.js'
+  },
+  // Above, is is done so we can have multiple entry points incase of other scripts 
+  // that should be seperated from our app bundle
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/template.html'
