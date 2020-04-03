@@ -1,28 +1,25 @@
 const path = require('path');
 const merge = require('webpack-merge');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // Must be destructured
-const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // Minify & extract css
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin'); // For minification
+const TerserPlugin = require('terser-webpack-plugin');
 
 const common = require('./webpack.common');
 
-module.exports = merge(common, { // merge common webpack file with prod
+module.exports = merge(common, {
   mode: 'production',
   output: {
     filename: '[name].[contentHash].bundle.js', 
-    // Use name to specify other bundle files aside main app bundle file
-    // use [contentHash] for cache busting
     path: path.resolve(__dirname, 'dist')
   },
   optimization: {
     minimizer: [
-      new OptimizeCssAssetsPlugin(), // minimizer for css
-      new TerserPlugin(), // minimizer for javascript
+      new OptimizeCssAssetsPlugin(),
+      new TerserPlugin(),
       new HtmlWebpackPlugin({
         template: './src/template.html',
-        // Above, use this file as out template to create html file in dist
         minify: {
           removeAttributeQuotes: true,
           collapseWhitespace: true,
@@ -35,7 +32,7 @@ module.exports = merge(common, { // merge common webpack file with prod
     new MiniCssExtractPlugin({
       filename: '[name].[contentHash].css'
     }),
-    new CleanWebpackPlugin() // To remove unused build files from dist
+    new CleanWebpackPlugin()
   ],
   module: {
     rules: [
@@ -43,9 +40,8 @@ module.exports = merge(common, { // merge common webpack file with prod
         test: /\.scss$/,
         use: [
         MiniCssExtractPlugin.loader, 
-        // Above extracts css file ssepereately for better performance in production
-        'css-loader', // Turns css into commomJS
-        'sass-loader' // Turns sass into css
+        'css-loader',
+        'sass-loader'
         ]
       },
     ]
